@@ -4,7 +4,7 @@ const app = express();
 const port =4000;
 
 const user=require('./routers/user');
-
+const vehicle=require('./routers/vehicle');
 
 const url ='mongodb://localhost/MobileAppBackend'
 mongoose.connect(url,{useNewUrlParser:true})
@@ -16,6 +16,7 @@ con.on("open",()=>{
 
 app.use(express.json())
 app.use('/User',user)
+app.use('/Vehicle',vehicle)
 
 app.listen(port,(req,res)=>{
     console.log("express App Listeing on port 4000")
