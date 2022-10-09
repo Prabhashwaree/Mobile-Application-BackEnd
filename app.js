@@ -6,6 +6,16 @@ const port =4000;
 const user=require('./routers/user');
 const vehicle=require('./routers/vehicle');
 
+
+app.use(function (req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'POST');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    next();
+});
+
+
 const url ='mongodb://localhost/MobileAppBackend'
 mongoose.connect(url,{useNewUrlParser:true})
 const con = mongoose.connection
