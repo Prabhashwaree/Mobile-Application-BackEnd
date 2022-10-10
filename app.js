@@ -16,6 +16,7 @@ app.use(function (req, res, next) {
 });
 
 
+
 const url ='mongodb://localhost/MobileAppBackend'
 mongoose.connect(url,{useNewUrlParser:true})
 const con = mongoose.connection

@@ -6,15 +6,36 @@ const Vehicle = require("../model/vehicle.model");
 app.use(express.json());
 
 router.get("/", async (req, res) => {
-      res.send("Nethmini");
-      console.log("neth");
-    
+  
+    try{
+      const vehical = await Vehicle.find();
+      res.json(vehical);
+
+    }catch(errr){
+      res.send("error : " + errr)
+    }
   });
   
-  router.get("/:id", async (req, res) => {});
-  
+  router.get("/search", async (req, resp) => {
+    try {
+      console.log("location = " + req.query.Location);
+      let res = await Vehicle.find();
+      let temp = [];
+      res.forEach(async (e) => {
+        if ((e.Date === req.query.Date) | (e.Location === req.query.Location)) {
+          console.log(e);
+          temp.push(e);
+        }
+      });
+      console.log("temp = " + temp);
+      resp.json(temp);
+    } catch (err) {
+      resp.json({ message: err });
+    }
+  });
   router.post("/", async (req, res) => {
    const vehicle = new Vehicle({
+    image: req.body.image,
     Reg_Number: req.body.Reg_Number,
     Brand: req.body.Brand,
     Price: req.body.Price,

@@ -1,6 +1,10 @@
 const mongoose = require('mongoose')
 
 const  VehicleSchema = new mongoose.Schema({
+    image: {
+        type: String,
+        required: true,
+      },
     Reg_Number :{
         type:String,
         required: true,
